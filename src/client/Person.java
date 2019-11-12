@@ -1,18 +1,18 @@
 package client;
 
-public class person {
+public class Person {
     private String imie;
     private String nazwisko;
     private String pesel;
     int id;
 
-    public person(String imie, String nazwisko, int id){
+    public Person(String imie, String nazwisko, int id){
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.id = id;
     }
 
-   public person(){}
+   public Person(){}
 
     public String getImie() {
         return imie;
