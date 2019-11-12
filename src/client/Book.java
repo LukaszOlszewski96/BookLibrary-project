@@ -1,7 +1,5 @@
 package client;
 
-import java.util.Date;
-
 public class Book {
 
     //Define Book field:
@@ -84,5 +82,9 @@ public class Book {
 
     public void setPremiere(String premiere) {
         this.premiere = premiere;
+    }
+
+    public String toString(){
+        return "["+id+"]-"+title+""+author+""+ publishingHouse+""+language+""+premiere+""+pages;
     }
 }
