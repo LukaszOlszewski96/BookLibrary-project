@@ -25,4 +25,24 @@ public class Library {
             e.printStackTrace();
         }
     }
+
+    public boolean insertBook ( int id, String title, String author, String publishingHouse, String language, int pages, String premiere) {
+        try {
+            PreparedStatement prestatement = connection.prepareStatement("insert into  books values(NULL,?,?,?,?,?,?);");
+            prestatement.setInt(1,id);
+            prestatement.setString(2,title);
+            prestatement.setString(3,author);
+            prestatement.setString(4,publishingHouse);
+            prestatement.setString(5,language);
+            prestatement.setInt(6,pages);
+            prestatement.setInt(7,pages);
+            prestatement.setString(6,premiere);
+            prestatement.execute();
+        }catch(SQLException e) {
+            System.err.println("Problem with adding book");
+        return false;
+        }
+        return true;
+    }
 }
+

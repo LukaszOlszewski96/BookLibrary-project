@@ -25,13 +25,13 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="cc08ebda-2362-48ca-8dec-9c2f2670c9f5">
-        <schema name="librarydb" object-types="table, procedure, view, function" />
+        <schema name="librarydb" object-types="procedure, dataset trigger, function, constraint, table, column, index, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="cc08ebda-2362-48ca-8dec-9c2f2670c9f5">
-      <console name="Library" type="STANDARD" schema="librarydb" session="Main"><![CDATA[create database LibraryDB;
+      <console name="Library" type="STANDARD" schema="librarydb" session="Main">create database LibraryDB;
 
 CREATE TABLE books(
 id_book INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
@@ -52,7 +52,7 @@ CREATE TABLE  rent(
 id_rent INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
 id_person INT NOT NULL, 
 id_book INT NOT NULL,
-date DATE NOT NULL);]]></console>
+date DATE NOT NULL);</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
