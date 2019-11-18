@@ -2,7 +2,7 @@
 <project version="4">
   <component name="DBNavigator.Project.DataEditorManager">
     <record-view-column-sorting-type value="BY_INDEX" />
-    <value-preview-text-wrapping value="true" />
+    <value-preview-text-wrapping value="false" />
     <value-preview-pinned value="false" />
   </component>
   <component name="DBNavigator.Project.DataExportManager">
@@ -23,11 +23,36 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="cc08ebda-2362-48ca-8dec-9c2f2670c9f5">
+        <schema name="librarydb" object-types="table, procedure, view, function" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="cc08ebda-2362-48ca-8dec-9c2f2670c9f5">
-      <console name="Library" type="STANDARD" schema="" session="Main"><![CDATA[create database LibrasyDB;]]></console>
+      <console name="Library" type="STANDARD" schema="librarydb" session="Main"><![CDATA[create database LibraryDB;
+
+CREATE TABLE books(
+id_book INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+title VARCHAR(255) NOT NULL, 
+author VARCHAR(255) NOT NULL,
+publishingHouse VARCHAR(255) NOT NULL, 
+language VARCHAR(255) NOT NULL, 
+premiere VARCHAR(255) NOT NULL, 
+pages VARCHAR(255) NOT NULL);
+
+CREATE TABLE presons(
+id_preson INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+imie VARCHAR(255) NOT NULL, 
+nazwisko VARCHAR(255) NOT NULL,
+pesel INT NOT NULL);
+
+CREATE TABLE  rent(
+id_rent INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+id_person INT NOT NULL, 
+id_book INT NOT NULL,
+date DATE NOT NULL);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
@@ -72,7 +97,7 @@
           <url-type value="DATABASE" />
           <host value="localhost" />
           <port value="3306" />
-          <database value="librasydb" />
+          <database value="librarydb" />
           <type value="USER" />
           <user value="root" />
           <deprecated-pwd value="" />
