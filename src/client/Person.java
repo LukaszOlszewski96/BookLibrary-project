@@ -3,7 +3,7 @@ package client;
 public class Person {
     private String imie;
     private String nazwisko;
-    private String pesel;
+    private int pesel;
     int id;
 
     public Person(String imie, String nazwisko, int id){
@@ -28,10 +28,10 @@ public class Person {
         this.nazwisko = nazwisko;
     }
 
-    public String getPesel() {
+    public int getPesel() {
         return pesel;
     }
-    public void setPesel(String pesel) {
+    public void setPesel(int pesel) {
         this.pesel = pesel;
     }
 
