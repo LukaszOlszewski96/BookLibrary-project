@@ -3,16 +3,18 @@ package client;
 public class Person {
     private String imie;
     private String nazwisko;
-    private int pesel;
+    private String pesel;
     int id;
 
-    public Person(String imie, String nazwisko, int id){
+    public Person( int id,String imie, String nazwisko,String pesel){
         this.imie = imie;
         this.nazwisko = nazwisko;
         this.id = id;
+        this.pesel = pesel;
     }
 
    public Person(){}
+
 
     public String getImie() {
         return imie;
@@ -28,10 +30,10 @@ public class Person {
         this.nazwisko = nazwisko;
     }
 
-    public int getPesel() {
+    public String getPesel() {
         return pesel;
     }
-    public void setPesel(int pesel) {
+    public void setPesel(String pesel) {
         this.pesel = pesel;
     }
 

@@ -1,16 +1,14 @@
 package library;
 import client.Book;
+import client.Person;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Library {
-    public static void main(String[] args) {
-
-    }
-    public static final String DB_URL = "jdbc:mysql://localhost:3306/librasydb";
-    public static final String DRIVER = "com.mysql.jdbc.Driver";
+    public static final String DB_URL = "jdbc:mysql://127.0.0.1/librarydb";
+    public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private Connection connection = null;
     private Statement statement = null;
 
@@ -22,7 +20,7 @@ public class Library {
             e.printStackTrace();
         }
         try {
-            connection = DriverManager.getConnection(DB_URL);
+            connection = DriverManager.getConnection(DB_URL,"root","");
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.err.println("Problem with connection");
@@ -30,7 +28,7 @@ public class Library {
         }
     }
 
-    public boolean insertBook ( int id, String title, String author, String publishingHouse, String language, int pages, String premiere) {
+    public boolean insertBook ( String title, String author, String publishingHouse, String language, int pages, String premiere) {
         try {
             PreparedStatement prestatement = connection.prepareStatement("insert into  books values(NULL,?,?,?,?,?,?);");
             prestatement.setString(1,title);
@@ -38,8 +36,7 @@ public class Library {
             prestatement.setString(3,publishingHouse);
             prestatement.setString(4,language);
             prestatement.setInt(5,pages);
-            prestatement.setInt(6,pages);
-            prestatement.setString(7,premiere);
+            prestatement.setString(6,premiere);
             prestatement.execute();
         }catch(SQLException e) {
             System.err.println("Problem with adding book");
@@ -48,12 +45,12 @@ public class Library {
         return true;
     }
 
-    public boolean insertPerson ( int id, String imie, String nazwisko, int pesel) {
+    public boolean insertPerson (String imie, String nazwisko, String pesel) {
         try {
-            PreparedStatement prestatement = connection.prepareStatement("insert into persons values(NULL,?,?,?);");
+            PreparedStatement prestatement = connection.prepareStatement("insert into presons values(NULL,?,?,?);");
             prestatement.setString(1,imie);
             prestatement.setString(2,nazwisko);
-            prestatement.setInt(3,pesel);
+            prestatement.setString(3,pesel);
             prestatement.execute();
         }catch(SQLException e) {
             System.err.println("Problem with adding person");
@@ -64,7 +61,7 @@ public class Library {
 
     public boolean insertRent ( int idPerson, int idBook) {
         try {
-            PreparedStatement prestatement = connection.prepareStatement("insert into persons values(NULL,?,?);");
+            PreparedStatement prestatement = connection.prepareStatement("insert into rent values(NULL,?,?);");
             prestatement.setInt(1,idPerson);
             prestatement.setInt(2,idBook);
             prestatement.execute();
@@ -76,7 +73,7 @@ public class Library {
     }
 
     public List<Book> selectBook(){
-        List<Book> book = new LinkedList<>();
+        List<Book> book = new LinkedList<Book>();
         try{
             ResultSet result = statement.executeQuery("select * from books");
             int id;
@@ -102,7 +99,36 @@ public class Library {
             }
         return book;
         }
+    public List<Person> selectPerson() {
+        List <Person> person = new LinkedList<>();
+        try {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM presons");
+            String imie;
+            String nazwisko;
+            String pesel;
+            int id;
+            while (resultSet.next()) {
+                id = resultSet.getInt("id_preson");
+                imie = resultSet.getString("imie");
+                nazwisko = resultSet.getString("nazwisko");
+                pesel = resultSet.getString("pesel");
+                person.add(new Person(id, imie, nazwisko, pesel));
+            }
+            }catch (SQLException e){
+                e.printStackTrace();
+                return null;
+            }
+            return person;
+        }
+    public void closeConnection(){
+        try{
+            connection.close();
+        }catch(SQLException e){
+            System.err.println("Problem with close connection!!!");
+            e.printStackTrace();
+        }
+    }
     }
 
-}
+
 
